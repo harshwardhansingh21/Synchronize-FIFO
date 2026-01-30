@@ -17,7 +17,7 @@ input clk,
         write_pointer<=0;
         dout<=0;
       end
-    else if(wr_en && !full)
+    else if(wr_en && !full)//write only when wr_en is high and memory is not full to avoid overflow condition
     begin
       memory[write_pointer[3:0]]<=din;
       write_pointer<=write_pointer+1'b1;
@@ -30,7 +30,7 @@ input clk,
         read_pointer<=0;
         dout<=0;
       end
-     else if(rd_en && !empty)
+     else if(rd_en && !empty)//read only when rd_en is high and memoery is not empty
     begin
       dout<=memory[read_pointer[3:0]];
       read_pointer<=read_pointer+1'b1;
